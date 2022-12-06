@@ -30,10 +30,8 @@ services:
     depends_on:
       - alb-php-web
       - alb-mysql
-      - alb-rabbitmq
     links:
       - alb-mysql
-      - alb-rabbitmq
     networks:
       - docker-network
   alb-mysql:
