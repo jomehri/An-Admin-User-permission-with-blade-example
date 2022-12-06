@@ -41,4 +41,30 @@ class User extends Authenticatable
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
+
+    /**
+     * Columns
+     */
+    const COLUMN_NAME = 'name';
+    const COLUMN_EMAIL = 'email';
+    const COLUMN_BALANCE = 'password';
+    const COLUMN_EMAIL_VERIFIED_AT = 'email_verified_at';
+    const COLUMN_PASSWORD = 'password';
+    const COLUMN_REMEMBER_TOKEN = 'remember_token';
+
+    /**
+     * @return string
+     */
+    public static function getDBTable(): string
+    {
+        return 'users';
+    }
+
+    /**
+     * @return string
+     */
+    public static function getGroup(): string
+    {
+        return 'Basic';
+    }
 }

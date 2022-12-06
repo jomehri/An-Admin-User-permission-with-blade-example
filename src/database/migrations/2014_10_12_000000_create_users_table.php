@@ -1,36 +1,43 @@
 <?php
 
-use Illuminate\Database\Migrations\Migration;
+use App\Models\User;
 use Illuminate\Database\Schema\Blueprint;
-use Illuminate\Support\Facades\Schema;
+use App\Database\Migration\BaseMigration;
 
-return new class extends Migration
+class CreateUsersTable extends BaseMigration
 {
+
     /**
-     * Run the migrations.
      *
-     * @return void
      */
-    public function up()
+    public function __construct()
     {
-        Schema::create('users', function (Blueprint $table) {
-            $table->id();
-            $table->string('name');
-            $table->string('email')->unique();
-            $table->timestamp('email_verified_at')->nullable();
-            $table->string('password');
-            $table->rememberToken();
-            $table->timestamps();
-        });
+        parent::__construct(User::getDBTable());
     }
 
     /**
-     * Reverse the migrations.
-     *
+     * @param Blueprint $table
      * @return void
      */
-    public function down()
+    protected function createTable(Blueprint $table): void
     {
-        Schema::dropIfExists('users');
+        $table->string(User::COLUMN_NAME, 100)
+            ->nullable(false);
+        $table->string(User::COLUMN_EMAIL, 150)
+            ->nullable(false)
+            ->unique();
+        $table->dateTime(User::COLUMN_EMAIL_VERIFIED_AT)
+            ->nullable();
+        $table->string(User::COLUMN_PASSWORD, 50)
+            ->nullable(false);
+        $table->string('remember_token', 100)->nullable();
     }
-};
+
+    /**
+     * @param Blueprint $table
+     * @return void
+     */
+    protected function alterTable(Blueprint $table): void
+    {
+    }
+}
