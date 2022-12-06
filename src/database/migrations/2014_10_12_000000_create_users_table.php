@@ -24,7 +24,7 @@ class CreateUsersTable extends BaseMigration
         $table->string(User::COLUMN_NAME, 100)->nullable(false);
         $table->string(User::COLUMN_EMAIL, 150)->nullable(false)->unique();
         $table->dateTime(User::COLUMN_EMAIL_VERIFIED_AT)->nullable();
-        $table->string(User::COLUMN_PASSWORD, 50)->nullable(false);
+        $table->string(User::COLUMN_PASSWORD, 256)->nullable(false);
         $table->string('remember_token', 100)->nullable();
     }
 
