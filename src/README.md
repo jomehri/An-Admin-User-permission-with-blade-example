@@ -30,7 +30,7 @@ database transactions (commit/rollback) and a few simple automated tests.
 - composer install
 - **Grant required permissions:** sudo chmod 777 storage/ -R
 - cd ../docker
-- **Database Migrations(Raw mysql statements):** sudo docker-compose exec alb-php-web php artisan migrate:fresh
+- **Database Migrations(Raw mysql statements):** sudo docker-compose exec alb-php-web php artisan migrate:fresh --seed
 - **Test Database Migrations(Raw mysql statements):** sudo docker-compose exec alb-php-web php artisan migrate:fresh
   --env=testing
 - **To run the tests:** sudo docker-compose exec alb-php-web php artisan test
