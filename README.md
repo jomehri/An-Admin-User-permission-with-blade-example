@@ -1,7 +1,7 @@
-## Questioner
+## A simple blade dashboard with user permission
 
-A simple web application to add requests by a user, and accept/reject them by an admin. Having the ability up upload
-files in chunks.
+A simple web application with different user levels, simple blade files, and chunk upload to upload large pdfs, using
+database transactions (commit/rollback) and a few simple automated tests.
 
 ## Author
 
@@ -11,26 +11,32 @@ files in chunks.
 
 ## What's included:
 
-- PHP 8
-- Production Readiness (Dockerized)
-- Strategy & Repository design patterns
-- Using Laravel service container, binding of services & repositories
-- Unit/Feature tests
-- White/Black Box testing
+- [x] PHP 8.1
+- [x] Production Readiness (Dockerized)
+- [x] Strategy & Repository design patterns
+- [x] Using Laravel service container, binding of services & repositories
+- [x] Unit/Feature tests
+- [x] White/Black Box tests
 
 ## Installation:
 
 - [install docker](https://docs.docker.com/get-docker/) based on your system environment
 - cd project folder
 - cd docker
-- docker-compose up
+- `docker-compose up`
 - cd ../src
-- cp .env.example .env
-- cp .env.testing.example .env.testing
-- composer install --ignore-platform-reqs
-- **Grant required permissions:** sudo chmod 777 storage/ -R
+- `cp .env.example .env`
+- `cp .env.testing.example .env.testing`
+- `composer install`
+- `npm install`
+- `npm run dev`
+- Grant required permissions: `sudo chmod 777 storage/ -R`
 - cd ../docker
-- **Database Migrations(Raw mysql statements):** sudo docker-compose exec alb-php-web php artisan migrate:fresh
-- **Test Database Migrations(Raw mysql statements):** sudo docker-compose exec alb-php-web php artisan migrate:fresh
-  --env=testing
-- **To run the tests:** sudo docker-compose exec alb-php-web php artisan test
+- Database Migrations(Raw mysql statements): `sudo docker-compose exec alb-php-web php artisan migrate:fresh --seed`
+- Test Database Migrations(Raw mysql statements): `sudo docker-compose exec alb-php-web php artisan migrate:fresh
+  --env=testing`
+
+## Demo
+- Login with `user@alibaba.ir` and password `123456` to see the user abilities
+- Login with `admin@alibaba.ir` and password `123456` to see the admin abilities
+- To run the tests: `sudo docker-compose exec alb-php-web php artisan test`
