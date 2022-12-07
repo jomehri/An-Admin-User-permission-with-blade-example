@@ -2,34 +2,21 @@
 
 namespace Database\Seeders;
 
-// use Illuminate\Database\Console\Seeds\WithoutModelEvents;
-use App\Models\User;
-use Illuminate\Database\Seeder;
+use Database\Seeders\Basic\UserSeeder;
+use Database\Seeders\Basic\UserRolePermissionSeeder;
 
-class DatabaseSeeder extends Seeder
+class DatabaseSeeder extends BaseSeeder
 {
     /**
      * Seed the application's database.
      *
      * @return void
      */
-    public function run()
+    public function run(): void
     {
-        User::factory(10)->create();
-
-        User::insert([
-            [
-                'name' => 'alibaba_user',
-                'email' => 'user@alibaba.ir',
-                'email_verified_at' => now(),
-                'password' => bcrypt("123456"),
-            ],
-            [
-                'name' => 'alibaba_admin',
-                'email' => 'admin@alibaba.ir',
-                'email_verified_at' => now(),
-                'password' => bcrypt("123456"),
-            ],
+        $this->call([
+            UserSeeder::class,
+            UserRolePermissionSeeder::class,
         ]);
     }
 }
