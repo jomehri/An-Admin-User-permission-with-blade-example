@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Models\Relations\Basic;
+namespace App\Models\Relations\Finance;
 
 use App\Models\Finance\PaymentRequest;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;

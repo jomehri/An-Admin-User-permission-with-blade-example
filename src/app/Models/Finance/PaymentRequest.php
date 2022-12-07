@@ -3,7 +3,7 @@
 namespace App\Models\Finance;
 
 use App\Models\BaseModel;
-use App\Models\Relations\Basic\PaymentRequestRelation;
+use App\Models\Relations\Finance\PaymentRequestRelation;
 
 class PaymentRequest extends BaseModel
 {

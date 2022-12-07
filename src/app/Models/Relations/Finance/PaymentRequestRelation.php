@@ -1,11 +1,11 @@
 <?php
 
-namespace App\Models\Relations\Basic;
+namespace App\Models\Relations\Finance;
 
-use App\Models\Finance\PaymentRequestFile;
 use App\Models\User;
-use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use App\Models\Finance\PaymentRequestFile;
 use Illuminate\Database\Eloquent\Relations\HasMany;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
 Trait PaymentRequestRelation
 {

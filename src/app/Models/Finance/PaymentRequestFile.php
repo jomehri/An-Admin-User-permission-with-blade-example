@@ -3,9 +3,12 @@
 namespace App\Models\Finance;
 
 use App\Models\BaseModel;
+use App\Models\Relations\Finance\PaymentRequestFileRelation;
 
 class PaymentRequestFile extends BaseModel
 {
+
+    use PaymentRequestFileRelation;
 
     /**
      * @return string
