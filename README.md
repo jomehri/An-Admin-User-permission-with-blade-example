@@ -29,7 +29,7 @@ database transactions (commit/rollback) and a few simple automated tests.
 - `cp .env.testing.example .env.testing`
 - `composer install`
 - `npm install`
-- `npm run dev`
+- in a seperate terminam `npm run dev` and leave it open
 - Grant required permissions: `sudo chmod 777 storage/ -R`
 - cd ../docker
 - Database Migrations(Raw mysql statements): `sudo docker-compose exec alb-php-web php artisan migrate:fresh --seed`
