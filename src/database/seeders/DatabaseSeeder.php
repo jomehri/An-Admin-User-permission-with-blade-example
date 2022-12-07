@@ -3,6 +3,7 @@
 namespace Database\Seeders;
 
 use Database\Seeders\Basic\UserSeeder;
+use Database\Seeders\Basic\UserAccountSeeder;
 use Database\Seeders\Basic\UserRolePermissionSeeder;
 
 class DatabaseSeeder extends BaseSeeder
@@ -17,6 +18,7 @@ class DatabaseSeeder extends BaseSeeder
         $this->call([
             UserSeeder::class,
             UserRolePermissionSeeder::class,
+            UserAccountSeeder::class,
         ]);
     }
 }
