@@ -1,4 +1,4 @@
-## Questioner
+## A simple blade dashboard with user permission
 
 A simple web application with different user levels, simple blade files, and chunk upload to upload large pdfs, using
 database transactions (commit/rollback) and a few simple automated tests.
