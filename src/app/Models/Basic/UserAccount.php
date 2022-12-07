@@ -3,9 +3,12 @@
 namespace App\Models\Basic;
 
 use App\Models\BaseModel;
+use App\Models\Relations\Basic\UserAccountRelation;
 
 class UserAccount extends BaseModel
 {
+
+    use UserAccountRelation;
 
     /**
      * @return string
