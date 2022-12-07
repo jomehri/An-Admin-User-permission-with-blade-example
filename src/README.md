@@ -11,12 +11,12 @@ database transactions (commit/rollback) and a few simple automated tests.
 
 ## What's included:
 
-- PHP 8.1
-- Production Readiness (Dockerized)
-- Strategy & Repository design patterns
-- Using Laravel service container, binding of services & repositories
-- Unit/Feature tests
-- White/Black Box tests
+- [x] PHP 8.1
+- [x] Production Readiness (Dockerized)
+- [x] Strategy & Repository design patterns
+- [x] Using Laravel service container, binding of services & repositories
+- [x] Unit/Feature tests
+- [x] White/Black Box tests
 
 ## Installation:
 
