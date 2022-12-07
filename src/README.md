@@ -23,14 +23,16 @@ database transactions (commit/rollback) and a few simple automated tests.
 - [install docker](https://docs.docker.com/get-docker/) based on your system environment
 - cd project folder
 - cd docker
-- docker-compose up
+- `docker-compose up`
 - cd ../src
-- cp .env.example .env
-- cp .env.testing.example .env.testing
-- composer install
-- **Grant required permissions:** sudo chmod 777 storage/ -R
+- `cp .env.example .env`
+- `cp .env.testing.example .env.testing`
+- `composer install`
+- `npm install`
+- `npm run dev`
+- Grant required permissions: `sudo chmod 777 storage/ -R`
 - cd ../docker
-- **Database Migrations(Raw mysql statements):** sudo docker-compose exec alb-php-web php artisan migrate:fresh --seed
-- **Test Database Migrations(Raw mysql statements):** sudo docker-compose exec alb-php-web php artisan migrate:fresh
-  --env=testing
-- **To run the tests:** sudo docker-compose exec alb-php-web php artisan test
+- Database Migrations(Raw mysql statements): `sudo docker-compose exec alb-php-web php artisan migrate:fresh --seed`
+- Test Database Migrations(Raw mysql statements): `sudo docker-compose exec alb-php-web php artisan migrate:fresh
+  --env=testing`
+- To run the tests: `sudo docker-compose exec alb-php-web php artisan test`
