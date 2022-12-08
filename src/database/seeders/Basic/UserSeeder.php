@@ -42,7 +42,7 @@ class UserSeeder extends BaseSeeder
             ]
         );
 
-        $user->givePermissionTo('send requests');
+        $user->assignRole('finance');
     }
 
     /**
@@ -50,15 +50,14 @@ class UserSeeder extends BaseSeeder
      */
     public function seedAdmin(): void
     {
-        $admin = User::create([
+        $user = User::create([
             'name' => 'Alibaba Admin',
             'email' => 'admin@alibaba.ir',
             'email_verified_at' => now(),
             'password' => bcrypt("123456"),
         ]);
 
-        $admin->givePermissionTo('approve requests');
-        $admin->givePermissionTo('reject requests');
+        $user->assignRole('admin');
     }
 
     /**
@@ -66,13 +65,17 @@ class UserSeeder extends BaseSeeder
      */
     public function seedAdminPermissions(): void
     {
-        $role = Role::create([
-            'name' => 'admin',
-        ]);
+        $role = Role::create(['name' => 'admin']);
 
+        /**
+         * Approve requests permission
+         */
         $permission = Permission::create(['name' => 'approve requests']);
         $permission->assignRole($role);
 
+        /**
+         * Reject requests permission
+         */
         $permission = Permission::create(['name' => 'reject requests']);
         $permission->assignRole($role);
     }
@@ -82,14 +85,12 @@ class UserSeeder extends BaseSeeder
      */
     public function seedUserPermissions(): void
     {
-        $role = Role::create([
-            'name' => 'finance',
-        ]);
+        $role = Role::create(['name' => 'finance']);
 
-        $permission = Permission::create([
-            'name' => 'send requests',
-        ]);
-
+        /**
+         * Send payment requests finance permission
+         */
+        $permission = Permission::create(['name' => 'send requests']);
         $permission->assignRole($role);
     }
 }
