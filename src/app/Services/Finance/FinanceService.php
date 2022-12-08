@@ -2,6 +2,7 @@
 
 namespace App\Services\Finance;
 
+use App\Models\Basic\UserAccount;
 use App\Services\BaseService;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -49,32 +50,53 @@ class FinanceService extends BaseService implements IFinanceService
     }
 
     /**
-     * @return Collection|null
+     * @return array|null
      */
-    public function getPendingPaymentRequests(): null|Collection
+    public function getPendingPaymentRequests(): null|array
     {
+        $result = [];
+
         if (!Auth::user()->can('moderate requests')) {
             return null;
         }
 
-        return PaymentRequest::all()->where(PaymentRequest::COLUMN_STATUS, PaymentRequest::STATUS_PENDING);
+        PaymentRequest::query()->where(PaymentRequest::COLUMN_STATUS, PaymentRequest::STATUS_PENDING)
+//            ->paginate(config("finance.records_per_page"))
+            ->each(function (PaymentRequest $item) use (&$result) {
+                $user = $item->user()->first();
+                $userAccount = UserAccount::find($item->user_account_id);
+
+                $result[] = [
+                    'id' => $item->id,
+                    'userName' => $user->name,
+                    'userEmail' => $user->email,
+                    'amount' => $item->amount,
+                    'accountNumber' => $userAccount->account_number,
+                ];
+            });
+
+        return $result;
     }
 
     /**
-     * @param Request $request
+     * @param PaymentRequest $paymentRequest
      * @return void
      */
-    public function approvePaymentRequest(Request $request): void
+    public function approvePaymentRequest(PaymentRequest $paymentRequest): void
     {
-        // TODO: Implement approvePaymentRequest() method.
+        $paymentRequest->update([
+            PaymentRequest::COLUMN_STATUS => PaymentRequest::STATUS_APPROVED
+        ]);
     }
 
     /**
-     * @param Request $request
+     * @param PaymentRequest $paymentRequest
      * @return void
      */
-    public function rejectPaymentRequest(Request $request): void
+    public function rejectPaymentRequest(PaymentRequest $paymentRequest): void
     {
-        // TODO: Implement rejectPaymentRequest() method.
+        $paymentRequest->update([
+            PaymentRequest::COLUMN_STATUS => PaymentRequest::STATUS_REJECTED
+        ]);
     }
 }

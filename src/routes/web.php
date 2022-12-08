@@ -4,13 +4,9 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Dashboard\DashboardController;
 
 /**
- * Auth routes
+ * Auth routes & default home
  */
 require __DIR__ . '/auth.php';
-
-/**
- * Default home route
- */
 Route::get('/', function () {
     return redirect('dashboard');
 });
@@ -22,10 +18,19 @@ Route::prefix('dashboard/')
     ->name('dashboard.payment_request.')
     ->middleware(['auth', 'verified'])
     ->group(function () {
+
+        /**
+         * Send payment requests
+         */
         Route::get('', [DashboardController::class, 'view'])->name('view');
         Route::post('save', [DashboardController::class, 'save'])->name('save');
-        Route::post('approve', [DashboardController::class, 'approvePaymentRequest'])->name('approve');
-        Route::post('reject', [DashboardController::class, 'rejectPaymentRequest'])->name('reject');
+
+        /**
+         * Moderate payment requests
+         */
+        Route::get('approve/{paymentRequest}', [DashboardController::class, 'approvePaymentRequest'])->name('approve');
+        Route::get('reject/{paymentRequest}', [DashboardController::class, 'rejectPaymentRequest'])->name('reject');
+
     });
 
 

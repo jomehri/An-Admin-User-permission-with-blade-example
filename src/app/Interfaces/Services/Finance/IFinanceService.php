@@ -3,6 +3,7 @@
 namespace App\Interfaces\Services\Finance;
 
 use Illuminate\Http\Request;
+use App\Models\Finance\PaymentRequest;
 use Illuminate\Database\Eloquent\Collection;
 
 interface IFinanceService
@@ -19,19 +20,19 @@ interface IFinanceService
     public function savePaymentRequest(Request $request): void;
 
     /**
-     * @return Collection|null
+     * @return array|null
      */
-    public function getPendingPaymentRequests(): null|Collection;
+    public function getPendingPaymentRequests(): null|array;
 
     /**
-     * @param Request $request
+     * @param PaymentRequest $paymentRequest
      * @return void
      */
-    public function approvePaymentRequest(Request $request): void;
+    public function approvePaymentRequest(PaymentRequest $paymentRequest): void;
 
     /**
-     * @param Request $request
+     * @param PaymentRequest $paymentRequest
      * @return void
      */
-    public function rejectPaymentRequest(Request $request): void;
+    public function rejectPaymentRequest(PaymentRequest $paymentRequest): void;
 }

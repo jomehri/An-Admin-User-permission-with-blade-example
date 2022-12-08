@@ -6,6 +6,7 @@ use Illuminate\View\View;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\RedirectResponse;
+use App\Models\Finance\PaymentRequest;
 use App\Http\Controllers\BaseController;
 use App\Interfaces\Services\Finance\IFinanceService;
 use App\Http\Requests\Finance\UserPaymentRequestStore;
@@ -22,7 +23,6 @@ class DashboardController extends BaseController
         $this->financeService = $financeService;
     }
 
-
     /**
      * User payment request view page
      *
@@ -33,7 +33,7 @@ class DashboardController extends BaseController
         return view('dashboard.payment_request.user-view', [
             'user' => Auth::user(),
             'userAccounts' => $this->financeService->getUserAccounts(),
-            'paymentRequests' => $this->financeService->getPendingPaymentRequests(),
+            'paymentRequests' => $this->paginate($this->financeService->getPendingPaymentRequests()),
         ]);
     }
 
@@ -56,13 +56,14 @@ class DashboardController extends BaseController
     /**
      * User payment request save
      *
+     * @param PaymentRequest $paymentRequest
      * @param Request $request
      * @param UserPaymentRequestApprove $userPaymentRequestApprove
      * @return RedirectResponse
      */
-    public function approvePaymentRequest(Request $request, UserPaymentRequestApprove $userPaymentRequestApprove): RedirectResponse
+    public function approvePaymentRequest(PaymentRequest $paymentRequest, Request $request, UserPaymentRequestApprove $userPaymentRequestApprove): RedirectResponse
     {
-        $this->financeService->approvePaymentRequest($request);
+        $this->financeService->approvePaymentRequest($paymentRequest);
 
         return redirect()->back()->with([
             'message' => 'Payment request has been approved saved successfully'
@@ -72,13 +73,13 @@ class DashboardController extends BaseController
     /**
      * User payment request save
      *
-     * @param Request $request
-     * @param UserPaymentRequestReject $userPaymentRequestApprove
+     * @param PaymentRequest $paymentRequest
+     * @param UserPaymentRequestReject $userPaymentRequestReject
      * @return RedirectResponse
      */
-    public function rejectPaymentRequest(Request $request, UserPaymentRequestReject $userPaymentRequestApprove): RedirectResponse
+    public function rejectPaymentRequest(PaymentRequest $paymentRequest, UserPaymentRequestReject $userPaymentRequestReject): RedirectResponse
     {
-        $this->financeService->approvePaymentRequest($request);
+        $this->financeService->rejectPaymentRequest($paymentRequest);
 
         return redirect()->back()->with([
             'message' => 'Payment request has been approved saved successfully'
