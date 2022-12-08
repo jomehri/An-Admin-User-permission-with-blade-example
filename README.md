@@ -1,7 +1,7 @@
 ## AliBaBa Task: A simple blade dashboard with user permission
 
 A simple web application with different user levels, simple blade files, and chunk upload to upload large pdfs, using
-database transactions (commit/rollback) and a few simple automated tests.
+database transactions (commit/rollback).
 
 ## Author
 
@@ -13,10 +13,9 @@ database transactions (commit/rollback) and a few simple automated tests.
 
 - [x] PHP 8.1
 - [x] Production Readiness (Dockerized)
-- [x] Strategy & Repository design patterns
-- [x] Using Laravel service container, binding of services & repositories
-- [x] Unit/Feature tests
-- [x] White/Black Box tests
+- [x] Strategy design pattern
+- [x] Using Laravel service container, binding of services
+- [x] Authentication & user permission
 
 ## Installation:
 
@@ -26,17 +25,19 @@ database transactions (commit/rollback) and a few simple automated tests.
 - `docker-compose up`
 - cd ../src
 - `cp .env.example .env`
-- `cp .env.testing.example .env.testing`
 - `composer install`
-- make sure you have latest version of npm installed and run `npm install`
-- to build the rquired resources run `npm run build`
+- make sure you have last version of npm installed and run `npm install`
+- to build the required resources run `npm run build`
 - Grant required permissions: `sudo chmod 777 storage/ -R`
 - cd ../docker
 - Database Migrations(Raw mysql statements): `sudo docker-compose exec alb-php-web php artisan migrate:fresh --seed`
-- Test Database Migrations(Raw mysql statements): `sudo docker-compose exec alb-php-web php artisan migrate:fresh
-  --env=testing`
 
 ## Demo
-- Login with `user@alibaba.ir` and password `123456` to see the user abilities
-- Login with `admin@alibaba.ir` and password `123456` to see the admin abilities
-- To run the tests: `sudo docker-compose exec alb-php-web php artisan test`
+
+- Login with `user@alibaba.ir` and password `123456` and add a few payment requests
+- Login with `admin@alibaba.ir` and password `123456` to approve/reject requests
+
+## Screenshots
+- ![Migrations demo](migrations.png)
+- ![User demo](user.png)
+- ![Admin demo](admin.png)
