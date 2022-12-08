@@ -2,15 +2,11 @@
 
 namespace App\Providers;
 
-use App\Interfaces\Repositories\Basic\IUserRepository;
-use App\Interfaces\Repositories\Sale\ICoinRepository;
-use App\Interfaces\Repositories\Sale\IUserCoinRepository;
-use App\Interfaces\Services\Sale\IUserCoinService;
-use App\Repositories\Basic\UserRepository;
-use App\Repositories\Sale\CoinRepository;
-use App\Repositories\Sale\UserCoinRepository;
-use App\Services\Sale\UserCoinService;
 use Illuminate\Support\ServiceProvider;
+use App\Services\Finance\FinanceService;
+use App\Repositories\Basic\UserRepository;
+use App\Interfaces\Services\Finance\IFinanceService;
+use App\Interfaces\Repositories\Basic\IUserRepository;
 
 class AppServiceProvider extends ServiceProvider
 {
@@ -19,9 +15,8 @@ class AppServiceProvider extends ServiceProvider
      *
      * @return void
      */
-    public function boot()
+    public function boot(): void
     {
-        //
     }
 
     /**
@@ -40,7 +35,7 @@ class AppServiceProvider extends ServiceProvider
      */
     public function registerServices(): void
     {
-        $this->app->bind(IUserCoinService::class, UserCoinService::class);
+        $this->app->bind(IFinanceService::class, FinanceService::class);
     }
 
     /**
@@ -49,7 +44,5 @@ class AppServiceProvider extends ServiceProvider
     public function registerRepositories(): void
     {
         $this->app->singleton(IUserRepository::class, UserRepository::class);
-        $this->app->singleton(ICoinRepository::class, CoinRepository::class);
-        $this->app->singleton(IUserCoinRepository::class, UserCoinRepository::class);
     }
 }

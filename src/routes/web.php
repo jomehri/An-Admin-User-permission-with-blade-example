@@ -1,23 +1,29 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\Dashboard\DashboardController;
 
-// TODO @aliJo remove this route
-Route::get('/test', function () {
-    $userId = 1;
-    $user = \App\Models\User::find(1);
-    $userAccounts = $user->accounts()->get();
-
-    dump($userAccounts);
-
-    $userAccount = \App\Models\Basic\UserAccount::find(1);
-    dump($userAccount->user()->get());
-});
 /**
- * Laravel Breeze Auth
+ * Auth routes
+ */
+require __DIR__ . '/auth.php';
+
+/**
+ * Default home route
  */
 Route::get('/', function () {
-    return view('dashboard');
-})->middleware(['auth', 'verified'])->name('dashboard');
+    return redirect('dashboard');
+});
 
-require __DIR__ . '/auth.php';
+/**
+ * Dashboard Routes
+ */
+Route::prefix('dashboard/')
+    ->name('dashboard.')
+    ->middleware(['auth', 'verified'])
+    ->group(function () {
+        Route::get('', [DashboardController::class, 'view'])->name('view');
+        Route::post('save', [DashboardController::class, 'save'])->name('save');
+    });
+
+

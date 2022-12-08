@@ -15,13 +15,13 @@ class UserSeeder extends BaseSeeder
     {
         User::insert([
             [
-                'name' => 'alibaba user',
+                'name' => 'Alibaba User',
                 'email' => 'user@alibaba.ir',
                 'email_verified_at' => now(),
                 'password' => bcrypt("123456"),
             ],
             [
-                'name' => 'alibaba admin',
+                'name' => 'Alibaba Admin',
                 'email' => 'admin@alibaba.ir',
                 'email_verified_at' => now(),
                 'password' => bcrypt("123456"),

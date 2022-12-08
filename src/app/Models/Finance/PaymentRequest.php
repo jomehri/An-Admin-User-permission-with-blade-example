@@ -11,6 +11,19 @@ class PaymentRequest extends BaseModel
     use PaymentRequestRelation;
 
     /**
+     * The attributes that are mass assignable.
+     *
+     * @var array $fillable
+     */
+    protected $fillable = [
+        self::COLUMN_ID,
+        self::COLUMN_USER_ID,
+        self::COLUMN_USER_ACCOUNT_ID,
+        self::COLUMN_AMOUNT,
+        self::COLUMN_STATUS,
+    ];
+
+    /**
      * @return string
      */
     public static function getDBTable(): string
