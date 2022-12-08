@@ -8,6 +8,13 @@ use Illuminate\Validation\Rule;
 
 class UserPaymentRequestStore extends FormRequest
 {
+    /**
+     * @return bool
+     */
+    public function authorize(): bool
+    {
+        return Auth::user()->can('send requests');
+    }
 
     /**
      * Get the validation rules that apply to the request.
