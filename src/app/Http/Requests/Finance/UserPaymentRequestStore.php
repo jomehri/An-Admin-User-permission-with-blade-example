@@ -21,7 +21,7 @@ class UserPaymentRequestStore extends FormRequest
      *
      * @return array<string, mixed>
      */
-    public function rules()
+    public function rules(): array
     {
         return [
             'amount' => ['required', 'integer', 'min:1000', 'max:10000000000'],

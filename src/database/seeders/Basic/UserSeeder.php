@@ -56,6 +56,9 @@ class UserSeeder extends BaseSeeder
             'email_verified_at' => now(),
             'password' => bcrypt("123456"),
         ]);
+
+        $admin->givePermissionTo('approve requests');
+        $admin->givePermissionTo('reject requests');
     }
 
     /**
@@ -67,10 +70,10 @@ class UserSeeder extends BaseSeeder
             'name' => 'admin',
         ]);
 
-        $permission = Permission::create([
-            'name' => 'approve requests',
-        ]);
+        $permission = Permission::create(['name' => 'approve requests']);
+        $permission->assignRole($role);
 
+        $permission = Permission::create(['name' => 'reject requests']);
         $permission->assignRole($role);
     }
 
