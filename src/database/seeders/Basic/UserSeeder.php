@@ -68,15 +68,9 @@ class UserSeeder extends BaseSeeder
         $role = Role::create(['name' => 'admin']);
 
         /**
-         * Approve requests permission
+         * Moderate requests permission by roles
          */
-        $permission = Permission::create(['name' => 'approve requests']);
-        $permission->assignRole($role);
-
-        /**
-         * Reject requests permission
-         */
-        $permission = Permission::create(['name' => 'reject requests']);
+        $permission = Permission::create(['name' => 'moderate requests']);
         $permission->assignRole($role);
     }
 

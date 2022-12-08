@@ -19,11 +19,13 @@ Route::get('/', function () {
  * Dashboard Routes
  */
 Route::prefix('dashboard/')
-    ->name('dashboard.')
+    ->name('dashboard.payment_request.')
     ->middleware(['auth', 'verified'])
     ->group(function () {
         Route::get('', [DashboardController::class, 'view'])->name('view');
         Route::post('save', [DashboardController::class, 'save'])->name('save');
+        Route::post('approve', [DashboardController::class, 'approvePaymentRequest'])->name('approve');
+        Route::post('reject', [DashboardController::class, 'rejectPaymentRequest'])->name('reject');
     });
 
 
